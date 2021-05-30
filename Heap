@@ -1,0 +1,66 @@
+
+#define MAX 10
+#include <iostream>
+using namespace std;    
+class Hash
+{
+    private:
+    int *ht;
+    public:
+    Hash()
+    {
+        ht=(int*)calloc(MAX,sizeof(int));
+        
+    }
+    int hashkey(int val)
+    {
+        int i;
+        i=val%MAX;
+        return i;
+        
+    }
+    void insert(int val)
+{
+    int index;
+    index=hashkey(val);
+    ht[index]=val;
+}
+int search(int val)
+{
+    int i;
+    i=hashkey(val);
+    if(ht[i]==val)
+    return i;
+    else
+    return -1;
+}
+void remove(int val)
+{
+    int i;
+    i=search(val);
+    if(i==-1)
+    cout<<"no such element found"<<endl;
+    else
+    ht[i]=0;
+    cout<<"element removed"<<endl;
+}
+
+};
+
+int main()
+{
+    Hash obj;
+    int a[5]={24,36,45,90,22};
+    for(int i=0;i<5;i++)
+    obj.insert(a[i]);
+    obj.remove(25);
+    obj.remove(90);
+    int p=obj.search(36);
+    if(p==-1)
+    cout<<"element not found"<<endl;
+     else
+cout<<" element found at"<<p<<"position"<<endl;
+
+    return 0;
+}
+
